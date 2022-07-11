@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verificando os fechamentos das Tags</title>
+</head>
+<body>
+ 
+  <script>
+       
+        const validChars = (listString)=>{
+            let leftChar = /\(/g;
+            let rightChar = /\)/g;
+            return listString.map((item)=>{
+                try{
+                    var c = item
+                    .replace(leftChar,'{')
+                    .replace(rightChar,'}')
+
+                    eval(c)
+                    return{
+                        BemFormatado:0,
+                        stringOriginal:item
+                    };
+                }catch(e){
+                    return{
+                        MalFormatado:1,
+                        stringOriginal:item
+                    };
+                }
+            })
+        }
+        validChars(["{[[]])}","()([{}])","{[()]}"]);
+        console.log(validChars(["{[[]])}","()([{}])","{[()]}"]));
+  </script>
+</body>
+</html>
